@@ -13,7 +13,7 @@ void applyToPixel(ref ColorRGB col, ubyte delegate(ubyte) transform)
 	col.blueByte(transform(col.blueByte));
 }
 
-void applyToImage(Image source, string prefix, string postfix, ubyte delegate(ubyte) transformFunc)
+void applyToImage(Image source, const string prefix, const string postfix, ubyte delegate(ubyte) transformFunc)
 {
 	auto cloned = source.clone;
 	foreach(row; cloned.view) 
@@ -29,9 +29,9 @@ void main(string[] args)
     if (args.length != 2)
         throw new Exception("Input image should be passed as argument");
 
-	string filename = args[1];
+	immutable string filename = args[1];
 	auto main_image = new Image(filename);
-	string prefix = args[1][0 .. lastIndexOf(args[1], '.')]; // remove extension
+	immutable string prefix = filename[0 .. filename.lastIndexOf('.')]; // remove extension
 
 	//negation
 	applyToImage(main_image, prefix, "_negated.png", delegate (ubyte b) => cast(ubyte)(~b));
