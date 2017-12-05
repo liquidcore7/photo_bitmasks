@@ -1,0 +1,12 @@
+{
+	"name": "image_masks",
+	"authors": [
+		"liquidcore7"
+	],
+	"dependencies": {
+		"dmagick": "0.2.1"
+	},
+	"description": "Apply bitmasks to image file",
+	"copyright": "none",
+	"license": "none"
+}
